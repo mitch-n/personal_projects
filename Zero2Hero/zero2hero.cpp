@@ -24,7 +24,8 @@ int main(){
 	//Creating the map
 	int map[10][20] = {{0}};
 	create_map(map);
-	draw(map, 0, 0, 0, 0);
+	draw(map, 0, 0, 0, 0,"The lights are about to go out.\nDon't worry, you have a flashlight.");
+	
 	
 	//Start Game
 	string direction;
@@ -78,7 +79,7 @@ int main(){
 			}
 			else if(direction=="uuddlrlrab"){
 				hp+=100;
-				draw(map,curx,cury,posx,posy);
+				draw(map,curx,cury,posx,posy,"");
 				cout<<"HP: "<<hp<<endl;
 				cout<<"Turns: "<<turns<<endl;
 			}
@@ -108,36 +109,11 @@ int main(){
 				
 		//cout<<"x,y = "<<posx<<","<<posy<<endl;
 	}
-	draw(map,curx,cury,posx,posy);
+	draw(map,curx,cury,posx,posy,"Hey, the lights came back on!");
 	//clear screen
 	//cout<<string(100,'\n');
 	cout<<endl;
 	
-	//If hero has more hp than turns, you won the game, otherwise, you lost
-	if(hp>0 && (hp-turns)>0){
-		cout<<"  _   _ _____ ____   ___  "<<endl;
-		cout<<" | | | | ____|  _ \\ / _ \\ "<<endl;
-		cout<<" | |_| |  _| | |_) | | | |"<<endl;
-		cout<<" |  _  | |___|  _ <| |_| |"<<endl;
-		cout<<" |_| |_|_____|_| \\_\\\\___/ "<<endl;
-		cout<<"--------------------------";
-		cout<<endl<<" YOU WIN!"<<endl
-		<<" hp: "<<hp<<endl
-		<<" turns: "<<turns<<endl
-		<<" Your score is "<<hp-turns<<endl;
-	}
+	score(hp, turns);
 	
-	else{
-		cout<<"  __________ ____   ___   "<<endl;
-		cout<<" |__  / ____|  _ \\ / _ \\  "<<endl;
-		cout<<"   / /|  _| | |_) | | | | "<<endl;
-		cout<<"  / /_| |___|  _ <| |_| | "<<endl;
-		cout<<" /____|_____|_| \\_\\\\___/  "<<endl;
-		cout<<"--------------------------";
-		cout<<endl<<" YOU LOSE!"<<endl
-		<<" hp: "<<hp<<endl
-		<<" turns: "<<turns<<endl
-		<<" Your score is "<<hp-turns<<endl;
-
-		}
 }

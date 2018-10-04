@@ -24,7 +24,8 @@ void greeting(){
 	cout<<"--------------------------"<<endl;
 	cout<<"Hello, Zero."<<endl;
 	cout<<"This is you --> 0"<<endl;
-	cout<<"You are on a quest to rescue your twin brother."<<endl<<endl;
+	cout<<"You are on a quest to rescue your twin brother."<<endl;
+	cout<<"You are in the TOP LEFT space, your brother is in the BOTTOM RIGHT."<<endl<<endl;
 	cout<<"When you step on an EVEN tile, you will gain that much HP."<<endl;
 	cout<<"When you step on an ODD tile, you will lose DOUBLE that much HP."<<endl;
 	cout<<"After stepping on a tile, it will disappear."<<endl;	
@@ -32,14 +33,14 @@ void greeting(){
 	cout<<"Each turn counts against you at the end of the game."<<endl;
 	cout<<"To become a HERO, you must earn more HP than turns taken to reach your twin."<<endl<<endl;
 	cout<<"Good Luck. Press <ENTER> to begin...";
-	getch();
+	cin.clear();
 }
 
-void draw(int (&map)[10][20], int curx, int cury, int posx, int posy){
+void draw(int (&map)[10][20], int curx, int cury, int posx, int posy, const char* msg){
 	
 	//clear screen
 	cout<<string(100,'\n');
-	
+	if (msg!="") cout<<"**"<<msg<<"**"<<endl;
 	//put a 10 in the last tile hero was on.
 	//put a 0 in the current tile hero is on.
 	map[cury][curx]=10;
@@ -117,4 +118,35 @@ void create_map(int (&map)[10][20]){
 	//Starting and Destination points
 	map[0][0]=0;
 	map[9][19]=0;
+}
+
+void score(int hp, int turns){
+	//If hero has more hp than turns, you won the game, otherwise, you lost
+	if(hp>0 && (hp-turns)>0){
+		cout<<"  _   _ _____ ____   ___  "<<endl;
+		cout<<" | | | | ____|  _ \\ / _ \\ "<<endl;
+		cout<<" | |_| |  _| | |_) | | | |"<<endl;
+		cout<<" |  _  | |___|  _ <| |_| |"<<endl;
+		cout<<" |_| |_|_____|_| \\_\\\\___/ "<<endl;
+		cout<<"--------------------------";
+		cout<<endl<<" YOU WIN!"<<endl
+		<<" hp: "<<hp<<endl
+		<<" turns: "<<turns<<endl
+		<<" Your score is "<<hp-turns<<endl;
+	}
+	
+	else{
+		cout<<"  __________ ____   ___   "<<endl;
+		cout<<" |__  / ____|  _ \\ / _ \\  "<<endl;
+		cout<<"   / /|  _| | |_) | | | | "<<endl;
+		cout<<"  / /_| |___|  _ <| |_| | "<<endl;
+		cout<<" /____|_____|_| \\_\\\\___/  "<<endl;
+		cout<<"--------------------------";
+		cout<<endl<<" YOU LOSE!"<<endl
+		<<" hp: "<<hp<<endl
+		<<" turns: "<<turns<<endl
+		<<" Your score is "<<hp-turns<<endl;
+
+		}
+	cin.clear();
 }
